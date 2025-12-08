@@ -1,0 +1,5 @@
+prefect>=2.10.0
+pandas
+requests
+boto3
+s3fs

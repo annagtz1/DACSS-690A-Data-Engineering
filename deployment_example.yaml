@@ -1,0 +1,15 @@
+apiVersion: prefect.io/v2
+kind: Deployment
+metadata:
+  name: olist-test
+  flow_name: olist_csv_api_pipeline
+spec:
+  flow_location: "./prefect_olist_pipeline.py"
+  entrypoint: "data_processing_flow:data_processing_flow"
+  schedule:
+    cron: "*/5 * * * *"   # test schedule every 5 minutes; change to "0 2 * * *" for daily
+  parameters:
+    csv_orders: "s3://<your-bucket>/raw/orders_large.csv"
+    s3_bucket: "<your-bucket>"
+  infra:
+    type: "process"
