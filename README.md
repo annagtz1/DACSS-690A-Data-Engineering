@@ -9,13 +9,13 @@ What I ran (local, reproducible)
 - The pipeline read the Olist orders CSV (local path), attempted to enrich rows with historical BRL→USD exchange rates, and saved outputs to `pipeline_outputs/`.
 
 Important reproducibility note
-- The exchange-rate API returned nulls for the enrichment during my run (see `pipeline_outputs/rates_cache.json`), so for reproducibility I produced monthly totals using a fixed conversion rate (1 BRL = 0.25 USD). Files to inspect:
-  - `pipeline_outputs/enriched_orders.csv` — enriched dataset from the flow (brl_to_usd_rate and payment_usd columns may be null in this run)
-  - `pipeline_outputs/monthly_sales_brl_minimal.csv` — monthly totals in BRL
-  - `pipeline_outputs/monthly_sales_usd_fixedrate_minimal.csv` — monthly USD totals computed using the fixed rate (0.25 BRL→USD)
+- The exchange-rate API returned nulls for the enrichment during my run (see `pipeline_outputs/rates_cache.json`), so for reproducibility I attempted to produce monthly totals using a fixed conversion rate (1 BRL = 0.25 USD). Files to inspect:
+  - `pipeline_outputs/enriched_orders.csv` — enriched dataset from the flow (brl_to_usd_rate and payment_usd columns null)
+  - `pipeline_outputs/monthly_sales_brl_minimal.csv` — monthly totals in BRL (null)
+  - `pipeline_outputs/monthly_sales_usd_fixedrate_minimal.csv` — monthly USD totals computed using the fixed rate (0.25 BRL→USD, null)
 
 Notes and how to reproduce locally
-1. Place your Olist CSV in a local path and confirm its location (or use the default path set in `prefect_olist_pipeline.py`).
+1. Place Olist CSV in a local path and confirm its location.
 2. Install requirements:
    pip install -r requirements.txt
 3. Run the pipeline from a notebook (sample first, then full run) or:
